@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                echo 'This is a build stage'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                echo 'This is a test stage'
             }
             post {
                 always {
@@ -19,6 +19,11 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
+            }
+        }
+         stage('Complete') {
+            steps {
+                echo 'Job Complete'
             }
         }
     }
